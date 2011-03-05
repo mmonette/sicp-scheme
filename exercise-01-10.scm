@@ -1,43 +1,16 @@
-;; exercise 1.9
-;; First version:
-;;(define (+ a b)
-;;  (if (= a 0)
-;;      b
-;;      (inc (+ (dec a) b))))
-;; evaluate (+ 4 5)
-;; (inc (+ 3 5))
-;; (inc (inc (+ 2 5)))
-;; (inc (inc (inc (+ 1 5))))
-;; (inc (inc (inc (inc (+ 0 5)))))
-;; (inc (inc (inc (inc 5))))
-;; (inc (inc (inc 6)))
-;; (inc (inc 7))
-;; (inc 8)
-;; 9
-;; this version was a recursive process
-
-;; Second version:
-;;(define (+ a b)
-;;  (if (= a 0)
-;;      b
-;;      (+ (dec a) (inc b))))
-;; evaluate (+ 4 5)
-;; (+ 4 5)
-;; (+ 3 6)
-;; (+ 2 7)
-;; (+ 1 8)
-;; (+ 0 9)
-;; 9
-;; this version was an iterative process, expressed in a recursive procedure
-
 ;; Exercise 1.10
+;; The following procedure computes a mathematical function called Ackermann's function.
 (define (A x y)
-;;  (display "A ") (display x) (display " ") (display y) (newline)
   (cond ((= y 0) 0)
         ((= x 0) (* 2 y))
         ((= y 1) 2)
         (else (A (- x 1)
                  (A x (- y 1))))))
+;; What are the values of the following expressions?
+
+(A 1 10)
+(A 2 4)
+(A 3 3)
 
 ;; (A 1 10)
 ;; (A 0 (A 1 9))
@@ -94,10 +67,13 @@
 ;; (A 2 4)
 ;; 65536 (see above)
 
+;; Consider the following procedures, where A is te procedure defined above.
+;; Give concise mathematical defintions 
+
 (define (f n) (A 0 n))
-;; = 2 * n
+;; = 2 * nw
 (define (g n) (A 1 n))
-;; = 2^n
+;; = 2^n when n > 0
 (define (h n) (A 2 n))
-;; = 2^(h (n - 1))
+;; = 2^(h (n - 1)) whan n > 1, 2 when n = 1, 0 when n = 0
 
